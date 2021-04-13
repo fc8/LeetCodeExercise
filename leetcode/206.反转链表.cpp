@@ -18,20 +18,16 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode *p=new ListNode,*q=nullptr;
-        if (head==nullptr)
+        if (!head||!head->next)
         {
-            return head;    
+            return head;
         }
-        //头插法
-        while (head!=nullptr)
-        {
-            q=head;
-            head=head->next;
-            q->next=p->next;
-            p->next=q;
-        }
-        return p->next;
+        ListNode *cur=reverseList(head->next);
+        head->next->next=head;
+        head->next=nullptr;
+        return cur;
+
+        
     }
 };
 // @lc code=end
